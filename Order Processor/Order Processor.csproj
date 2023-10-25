@@ -11,11 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <None Remove="Assets\Flag.ico" />
+    <None Remove="Assets\SonnyGothic.otf" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Flag.ico" />
+    <Resource Include="Assets\SonnyGothic.otf" />
   </ItemGroup>
 
 </Project>
