@@ -14,6 +14,29 @@
         Icon="/Assets/Flag.ico"
         ui:TitleBar.IsIconVisible="True">
     <Grid>
-      
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dataGrid" Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" AreRowDetailsFrozen="True" BorderBrush="Red" BorderThickness="1,1,1,1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ref"/>
+                <DataGridCheckBoxColumn Header="Cliente"/>
+                <DataGridCheckBoxColumn Header="Data de Entrega"/>
+                <DataGridCheckBoxColumn Header="Data encomenda"/>
+                <DataGridCheckBoxColumn Header="Estado"/>
+                <DataGridCheckBoxColumn Header="Estado Material"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="BtnDel" Content="Remover" Margin="0,0,15,15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="36" Width="80"/>
+        <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,110,15" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" />
+        <ComboBox x:Name="OptOrder" Margin="85,15,0,0" Height="32" SelectedIndex="0" Width="145">
+            <ComboBoxItem Content="Estado"/>
+            <ComboBoxItem Content="Cliente"/>
+            <ComboBoxItem Content="Data de entrega"/>
+        </ComboBox>
+        <Label Content="Ordenar" VerticalAlignment="Top" Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="60" Margin="15,15,0,0"/>
+        <CheckBox x:Name="checkBox" Content="Mostrar enviados" Margin="0,15,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
+        <Label Content="By Goncermor" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="110" Margin="15,0,0,15" Height="32" VerticalAlignment="Bottom" Foreground="DarkGray"/>
     </Grid>
 </Window>
