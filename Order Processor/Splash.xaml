@@ -7,12 +7,20 @@
         xmlns:local="clr-namespace:Order_Processor"
         mc:Ignorable="d"
         Title="RPJM - Order Processor"
-        Height="120"
-        Width="200"
-        Background="Black" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
-    <Grid>
-        <Image Margin="15,0,0,15" HorizontalAlignment="Left" Width="20" Height="20" VerticalAlignment="Bottom" Source="/Assets/Flag.ico"/>
-        <Label Content="Order Processor" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" FontFamily="{StaticResource SonnyGothic}"/>
-        <Label Content="By Goncermor" Margin="0,0,16,16" FontFamily="{StaticResource SonnyGothic}" Height="17" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="70" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="DarkGray"/>
-    </Grid>
+        Height="240"
+        Width="400"
+        Background="Black" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" ContentRendered="Window_ContentRendered">
+    <Border BorderBrush="Red" BorderThickness="1,1,1,1">
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF540000" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image Margin="24,0,0,24" HorizontalAlignment="Left" Width="50" Height="50" VerticalAlignment="Bottom" Source="/Assets/Flag.ico"/>
+            <Label Content="Order Processor" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" FontFamily="{StaticResource SonnyGothic}" FontSize="24"/>
+            <Label Content="By Goncermor" Margin="0,0,34,34" FontFamily="{StaticResource SonnyGothic}" Height="17" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="DarkGray"/>
+        </Grid>
+    </Border>
 </Window>

@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Order_Processor
 {
-    /// <summary>
-    /// Lógica interna para MainWindow.xaml
-    /// </summary>
     public partial class Splash : Window
     {
         public Splash()
         {
             InitializeComponent();
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e) => _ = Wait();
+        private async Task Wait()
+        {
+            await Task.Delay(3000);
+            this.Hide();
+            Application.Current.Run(new MainWindow());
         }
     }
 }
