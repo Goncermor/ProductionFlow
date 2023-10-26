@@ -37,6 +37,6 @@ This project is licensed under the [MIT License](LICENSE), allowing free use, mo
 
 ---
 
-**Order Processor** is developed and maintained by Goncermor for RPJM Solutions 4.0. For inquiries, please contact [Goncermor](mailto:goncermor@example.com). 
+**Order Processor** is developed and maintained by Goncermor for RPJM Solutions 4.0. For inquiries, please contact [Goncermor](goncermor.com). 
 
 Happy ordering! 🛒🎉
