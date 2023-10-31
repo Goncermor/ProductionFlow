@@ -12,7 +12,7 @@ namespace Order_Processor
         private void Window_ContentRendered(object sender, EventArgs e) => _ = Wait();
         private async Task Wait()
         {
-            await Task.Delay(3000);
+            await Task.Delay(000);
             this.Hide();
             Application.Current.Run(new MainWindow());
         }

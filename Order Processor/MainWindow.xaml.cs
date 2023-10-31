@@ -19,9 +19,24 @@ namespace Order_Processor
     /// </summary>
     public partial class MainWindow : Window
     {
+        Database DB = new Database();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e) => _ = LoadData();
+
+        private async Task LoadData()
+        {
+            await Task.Delay(2000);
+            LoadSplash.Visibility = Visibility.Hidden;
+            DataGrid.Items.Add(DB.OrderList[0]);
+          
+          
+
+
         }
     }
 }

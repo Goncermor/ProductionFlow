@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Order_Processor
+namespace Order_Processor.Types
 {
     class OrderType
     {

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:local="clr-namespace:Order_Processor"
+        xmlns:Converters="clr-namespace:Order_Processor.Converters"
         xmlns:Controls="clr-namespace:Order_Processor.Controls" x:Class="Order_Processor.MainWindow"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
@@ -13,20 +14,20 @@
         Width="800"
         Background="Black"
         Icon="/Assets/Flag.ico"
-        ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen">
+        ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+    <Window.Resources>
+        <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
+    </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <DataGrid x:Name="dataGrid" Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" AreRowDetailsFrozen="True" BorderBrush="Red" BorderThickness="1,1,1,1">
+        <DataGrid x:Name="DataGrid"  Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" AreRowDetailsFrozen="True" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Ref"/>
-                <DataGridCheckBoxColumn Header="Nome"/>
-                <DataGridCheckBoxColumn Header="Cliente"/>
-                <DataGridCheckBoxColumn Header="Data de Entrega"/>
-                <DataGridCheckBoxColumn Header="Data encomenda"/>
-                <DataGridCheckBoxColumn Header="Estado"/>
-                <DataGridCheckBoxColumn Header="Estado Material"/>
+                <DataGridTextColumn Header="Ref" Binding="{Binding Ref, Converter={StaticResource EnumDescriptionConverter}}"/>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Name, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Cliente" Binding="{Binding Client, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Data de Entrega" Binding="{Binding LimitDate, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Estado" Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Estado Material" Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" />
 
             </DataGrid.Columns>
         </DataGrid>
@@ -38,8 +39,8 @@
             <ComboBoxItem Content="Data de entrega"/>
         </ComboBox>
         <Label Content="Ordenar" VerticalAlignment="Top" Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="60" Margin="15,15,0,0"/>
-        <CheckBox x:Name="checkBox" Content="Mostrar enviados" Margin="0,15,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
+        <CheckBox x:Name="ShowSent" Content="Mostrar enviados" Margin="0,15,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
         <Label Content="By Goncermor" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="110" Margin="15,0,0,15" Height="32" VerticalAlignment="Bottom" Foreground="DarkGray"/>
-        <Controls:LoadingControl Panel.ZIndex="999"/>
+        <Controls:LoadingControl x:Name="LoadSplash" Panel.ZIndex="999"/>
     </Grid>
 </Window>
