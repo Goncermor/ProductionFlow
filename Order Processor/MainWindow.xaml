@@ -19,8 +19,9 @@
         <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="DataGrid"  Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" AreRowDetailsFrozen="True" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+        <DataGrid x:Name="DataGrid"  Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" AreRowDetailsFrozen="True" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="PO" Binding="{Binding PurchaseOrder, Converter={StaticResource EnumDescriptionConverter}}"/>
                 <DataGridTextColumn Header="Ref" Binding="{Binding Ref, Converter={StaticResource EnumDescriptionConverter}}"/>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Name, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Cliente" Binding="{Binding Client, Converter={StaticResource EnumDescriptionConverter}}" />

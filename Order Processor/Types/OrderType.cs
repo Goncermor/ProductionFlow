@@ -4,15 +4,16 @@ namespace Order_Processor.Types
 {
     class OrderType
     {
-
+        [JsonPropertyName("po")]
+        public string? PurchaseOrder { get; set; }
         [JsonPropertyName("r")]
-        public string Ref { get; set; }
+        public string? Ref { get; set; }
 
         [JsonPropertyName("n")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonPropertyName("c")]
-        public string Client { get; set; }
+        public string? Client { get; set; }
 
         [JsonPropertyName("ld")]
         public DateTime LimitDate { get; set; }

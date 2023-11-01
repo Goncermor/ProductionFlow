@@ -3,15 +3,21 @@ using System.Runtime.Serialization;
 
 namespace Order_Processor.Types
 {
-    enum MaterialStateType
+    enum StateType
     {
-        [Description("Encomendado")]
-        [EnumMember(Value = "OR")]
-        Orderd,
+        [Description("Por Fazer")]
+        [EnumMember(Value = "TD")]
+        ToDo,
+        [Description("Produção")]
+        [EnumMember(Value = "PR")]
+        Production,
+        [Description("Controlo de Qualidade")]
+        [EnumMember(Value = "QC")]
+        QualityControl,
         [Description("Atrazado")]
-        [EnumMember(Value = "LT")]
-        Late,
-        [Description("Pronto")]
+        [EnumMember(Value = "PD")]
+        PastDue,
+        [Description("Feito")]
         [EnumMember(Value = "DN")]
         Done
     }

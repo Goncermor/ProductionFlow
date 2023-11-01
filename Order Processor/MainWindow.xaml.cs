@@ -11,15 +11,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Windows.UI.WebUI;
 
 namespace Order_Processor
 {
-    /// <summary>
-    /// Lógica interna para MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        Database DB = new Database();
+        Database DB;
 
         public MainWindow()
         {
@@ -30,11 +28,12 @@ namespace Order_Processor
 
         private async Task LoadData()
         {
+            DB = new Database();
             await Task.Delay(2000);
             LoadSplash.Visibility = Visibility.Hidden;
-            DataGrid.Items.Add(DB.OrderList[0]);
-          
-          
+            DataGrid.ItemsSource = DB.OrderList;
+
+
 
 
         }
