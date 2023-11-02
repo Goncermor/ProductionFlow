@@ -17,6 +17,12 @@
         ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
     <Window.Resources>
         <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
+
+        <ContextMenu x:Key="DataGridContextMenu">
+            <MenuItem Header="Copiar"/>
+            <MenuItem Header="Editar"/>
+            <MenuItem Header="Apagar"/>
+        </ContextMenu>
     </Window.Resources>
     <Grid>
         <DataGrid x:Name="DataGrid"  Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" AreRowDetailsFrozen="True" IsReadOnly="True">
@@ -29,11 +35,9 @@
                 <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Estado" Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Estado Material" Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" />
-
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtnDel" Content="Remover" Margin="0,0,15,15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="36" Width="80"/>
-        <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,110,15" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" />
+        <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,14,14" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" />
         <ComboBox x:Name="OptOrder" Margin="85,15,0,0" Height="32" SelectedIndex="0" Width="145">
             <ComboBoxItem Content="Estado"/>
             <ComboBoxItem Content="Cliente"/>
