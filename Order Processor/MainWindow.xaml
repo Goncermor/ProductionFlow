@@ -10,8 +10,8 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="RPJM - Order Processor"
-        Height="450"
-        Width="800"
+        Height="542"
+        Width="1000"
         Background="Black"
         Icon="/Assets/Flag.ico"
         ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
@@ -25,27 +25,23 @@
         </ContextMenu>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="DataGrid"  Margin="10,65,10,65" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" AreRowDetailsFrozen="True" IsReadOnly="True">
+        <DataGrid x:Name="DataGrid"  ContextMenu="{StaticResource DataGridContextMenu}"  Margin="10,10,10,61" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="PO" Binding="{Binding PurchaseOrder, Converter={StaticResource EnumDescriptionConverter}}"/>
-                <DataGridTextColumn Header="Ref" Binding="{Binding Ref, Converter={StaticResource EnumDescriptionConverter}}"/>
-                <DataGridTextColumn Header="Nome" Binding="{Binding Name, Converter={StaticResource EnumDescriptionConverter}}" />
-                <DataGridTextColumn Header="Cliente" Binding="{Binding Client, Converter={StaticResource EnumDescriptionConverter}}" />
-                <DataGridTextColumn Header="Data de Entrega" Binding="{Binding LimitDate, Converter={StaticResource EnumDescriptionConverter}}" />
-                <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="PO" Binding="{Binding PurchaseOrder}" />
+                <DataGridTextColumn Header="Ref" Binding="{Binding Ref}"/>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Cliente" Binding="{Binding Client}" />
+                <DataGridTextColumn Header="Data de Entrega" Binding="{Binding LimitDate, StringFormat={}{0:MM/dd/yyyy}}" />
+                <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, StringFormat={}{0:MM/dd/yyyy}}" />
                 <DataGridTextColumn Header="Estado" Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Estado Material" Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Notas" Binding="{Binding Notes}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,14,14" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" />
-        <ComboBox x:Name="OptOrder" Margin="85,15,0,0" Height="32" SelectedIndex="0" Width="145">
-            <ComboBoxItem Content="Estado"/>
-            <ComboBoxItem Content="Cliente"/>
-            <ComboBoxItem Content="Data de entrega"/>
-        </ComboBox>
-        <Label Content="Ordenar" VerticalAlignment="Top" Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="60" Margin="15,15,0,0"/>
-        <CheckBox x:Name="ShowSent" Content="Mostrar enviados" Margin="0,15,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
+        <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,14,14" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" Click="BtnAdd_Click" />
+        <CheckBox x:Name="ShowSent" Content="Mostrar enviados" Margin="0,0,119,16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
         <Label Content="By Goncermor" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="110" Margin="15,0,0,15" Height="32" VerticalAlignment="Bottom" Foreground="DarkGray"/>
-        <Controls:LoadingControl x:Name="LoadSplash" Panel.ZIndex="999"/>
+        <Controls:LoadingControl x:Name="LoadSplash"/>
+        <Controls:DataEditor x:Name="DataEditor"/>
     </Grid>
 </Window>

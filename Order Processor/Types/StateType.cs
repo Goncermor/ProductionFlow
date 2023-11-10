@@ -5,6 +5,9 @@ namespace Order_Processor.Types
 {
     enum StateType
     {
+        [Description("Não definido")]
+        [EnumMember(Value = "")]
+        Undefined,
         [Description("Por Fazer")]
         [EnumMember(Value = "TD")]
         ToDo,

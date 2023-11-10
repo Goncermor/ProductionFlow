@@ -17,7 +17,7 @@ namespace Order_Processor
 {
     public partial class MainWindow : Window
     {
-        Database DB;
+        Database? DB;
 
         public MainWindow()
         {
@@ -29,13 +29,29 @@ namespace Order_Processor
         private async Task LoadData()
         {
             DB = new Database();
-            await Task.Delay(2000);
+
             LoadSplash.Visibility = Visibility.Hidden;
-            DataGrid.ItemsSource = DB.OrderList;
+
+            foreach (Types.OrderType item in DB.OrderList) {
+                DataGrid.Items.Add(item);
+            }
+            DataEditor.ClientList = DB.ClientList;
 
 
 
 
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            DataEditor.Title = "Adicionar Encomenda";
+            DataEditor.ShowAsync();
+            
+        }
+
+        private void OptOrder_Selected(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

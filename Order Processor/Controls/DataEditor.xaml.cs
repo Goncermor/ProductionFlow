@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using ModernWpf.Controls;
+using System.Data;
 
 namespace Order_Processor.Controls
 {
-    /// <summary>
-    /// Interação lógica para LoadingControl.xam
-    /// </summary>
-    public partial class LoadingControl : UserControl
+    public partial class DataEditor : ContentDialog
     {
-        public LoadingControl()
+        public List<string> ClientList = new List<string>();
+        public DataEditor()
         {
             InitializeComponent();
+           
+        }
+
+        private void ClientBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                sender.ItemsSource = ClientList.Where(x => x.IndexOf(sender.Text, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            }
         }
     }
 }
