@@ -31,18 +31,14 @@ namespace Order_Processor
 
         private async Task LoadData()
         {
+            await Task.Delay(1000);
             DB = new Database();
-
-
             LoadSplash.Visibility = Visibility.Hidden;
+
 
             DataGrid.ItemsSource = DB.OrderList;
             DataEditor.ClientList = DB.ClientList;
         }
-
-        #endregion
-
-
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +46,13 @@ namespace Order_Processor
             DataEditor.ShowAsync();
 
         }
-       
+
+        #endregion
+
+
+
+
+
 
 
 
@@ -103,5 +105,6 @@ namespace Order_Processor
         }
 
         #endregion
+
     }
 }

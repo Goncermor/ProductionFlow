@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:local="clr-namespace:Order_Processor"
-        xmlns:Converters="clr-namespace:Order_Processor.Converters"
         xmlns:Controls="clr-namespace:Order_Processor.Controls" x:Class="Order_Processor.MainWindow"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
