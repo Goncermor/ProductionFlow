@@ -12,7 +12,6 @@ namespace Order_Processor
         public List<string> ClientList = new List<string>();
         public List<Types.OrderType> OrderList = new List<Types.OrderType>();
         public Database() {
-
             if (!File.Exists(Config.DB_File)) File.WriteAllText(Config.DB_File, "[]");
             Types.OrderType[]? ReadValues = JsonSerializer.Deserialize<Types.OrderType[]>(File.ReadAllText(Config.DB_File));
             OrderList.AddRange(ReadValues!);

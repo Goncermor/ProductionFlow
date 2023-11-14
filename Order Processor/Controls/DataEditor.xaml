@@ -4,18 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:local="clr-namespace:Order_Processor.Controls"
-             xmlns:System="clr-namespace:System;assembly=System.Runtime" x:Class="Order_Processor.Controls.DataEditor"
+             xmlns:types="clr-namespace:Order_Processor.Types"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="Order_Processor.Controls.DataEditor"
              mc:Ignorable="d" Title="" DefaultButton="Primary" PrimaryButtonText="Guardar" SecondaryButtonText="Cancelar" BorderBrush="Red">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="304" Width="517">
-        <TextBox x:Name="PurchaseOrderBox" ui:ControlHelper.PlaceholderText="Ordem de Compra" Margin="10,0,267,0" TextWrapping="Wrap" VerticalAlignment="Center"/>
-        <TextBox x:Name="RefBox" ui:ControlHelper.PlaceholderText="Referencia" Margin="10,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240"/>
-        <TextBox x:Name="NameBox" ui:ControlHelper.PlaceholderText="Nome" Margin="10,10,267,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ui:AutoSuggestBox x:Name="ClientBox" ui:ControlHelper.PlaceholderText="Cliente" Margin="10,198,267,0" IsTextSearchEnabled="True" TextChanged="ClientBox_TextChanged"/>
 
-        <ComboBox x:Name="StateComboBox"  ui:ControlHelper.PlaceholderText="Estado" Margin="10,0,0,10" Width="153" VerticalAlignment="Bottom" Height="32"/>
-        <ComboBox x:Name="MaterialStateComboBox" ui:ControlHelper.PlaceholderText="Estado Material" Margin="0,0,10,10" HorizontalAlignment="Right" Width="140" VerticalAlignment="Bottom" Height="32"/>
-        <DatePicker x:Name="LimitDateDatePicker" ui:ControlHelper.PlaceholderText="Data de Entrega" Margin="168,0,155,10" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" SelectedDateFormat="Short" Height="32"/>
-        <RichTextBox Margin="265,10,10,74" ui:ControlHelper.PlaceholderText="Notas"/>
+    <ui:ContentDialog.Resources>
+        <ObjectDataProvider x:Key="StateEnumValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="types:StateType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </ui:ContentDialog.Resources>
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="274" Width="518">
+        <TextBox x:Name="PurchaseOrderBox" ui:ControlHelper.PlaceholderText="Ordem de Compra" Margin="10,84,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="RefBox" ui:ControlHelper.PlaceholderText="Referencia" Margin="10,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240"/>
+        <TextBox x:Name="NameBox" ui:ControlHelper.PlaceholderText="Nome" Margin="10,10,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ui:AutoSuggestBox x:Name="ClientBox" ui:ControlHelper.PlaceholderText="Cliente" Margin="10,0,268,0" IsTextSearchEnabled="True" TextChanged="ClientBox_TextChanged" VerticalAlignment="Center"/>
+        <ComboBox x:Name="StateComboBox" SelectedValuePath="Key" ItemsSource="{Binding Source={StaticResource StateEnumValues}, Converter={StaticResource EnumDescriptionConverter}}" ui:ControlHelper.PlaceholderText="Estado" Margin="10,195,0,0" Width="240" Height="32"/>
+        <ComboBox x:Name="MaterialStateComboBox" SelectedValuePath="Key" ItemsSource="{Binding Source={StaticResource StateEnumValues}, Converter={StaticResource EnumDescriptionConverter}}" ui:ControlHelper.PlaceholderText="Estado Material" Margin="10,232,268,0" HorizontalAlignment="Stretch" Height="32"/>
+        <DatePicker x:Name="LimitDateDatePicker" ui:ControlHelper.PlaceholderText="Data de Entrega" Margin="10,158,268,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" SelectedDateFormat="Short" Height="32"/>
+        <RichTextBox Margin="259,10,10,10" ui:ControlHelper.PlaceholderText="Notas"/>
     </Grid>
 </ui:ContentDialog>

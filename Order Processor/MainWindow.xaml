@@ -15,17 +15,9 @@
         Background="Black"
         Icon="/Assets/Flag.ico"
         ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
-    <Window.Resources>
-        <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
 
-        <ContextMenu x:Key="DataGridContextMenu">
-            <MenuItem Header="Copiar"/>
-            <MenuItem Header="Editar"/>
-            <MenuItem Header="Apagar"/>
-        </ContextMenu>
-    </Window.Resources>
     <Grid>
-        <DataGrid x:Name="DataGrid"  ContextMenu="{StaticResource DataGridContextMenu}"  Margin="10,10,10,61" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="DataGrid" Margin="10,10,10,61" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="PO" Binding="{Binding PurchaseOrder}" />
                 <DataGridTextColumn Header="Ref" Binding="{Binding Ref}"/>
@@ -37,6 +29,14 @@
                 <DataGridTextColumn Header="Estado Material" Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Notas" Binding="{Binding Notes}" />
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copiar" Click="MenuCopy_Click"/>
+                    <MenuItem x:Name="MenuItem_Edit" Header="Editar" Click="MenuEdit_Click" IsEnabled="False"/>
+                    <Separator/>
+                    <MenuItem Header="Apagar" Click="MenuDelete_Click" Background="Red"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
         <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,14,14" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" Click="BtnAdd_Click" />
         <CheckBox x:Name="ShowSent" Content="Mostrar enviados" Margin="0,0,119,16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>

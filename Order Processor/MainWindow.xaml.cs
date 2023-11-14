@@ -17,7 +17,7 @@ namespace Order_Processor
 {
     public partial class MainWindow : Window
     {
-        Database? DB;
+        
 
         public MainWindow()
         {
@@ -26,32 +26,82 @@ namespace Order_Processor
 
         private void Window_ContentRendered(object sender, EventArgs e) => _ = LoadData();
 
+        #region Database Manage
+        Database? DB;
+
         private async Task LoadData()
         {
             DB = new Database();
 
+
             LoadSplash.Visibility = Visibility.Hidden;
 
-            foreach (Types.OrderType item in DB.OrderList) {
-                DataGrid.Items.Add(item);
-            }
+            DataGrid.ItemsSource = DB.OrderList;
             DataEditor.ClientList = DB.ClientList;
-
-
-
-
         }
+
+        #endregion
+
+
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             DataEditor.Title = "Adicionar Encomenda";
             DataEditor.ShowAsync();
-            
+
+        }
+       
+
+
+
+
+
+        #region Context Menu
+        private void MenuCopy_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder Sb = new StringBuilder();
+            foreach (object SelectedItem in DataGrid.SelectedItems)
+            {
+                Types.OrderType SelectedLine = (Types.OrderType)SelectedItem;
+
+                Sb.AppendLine($"Nome: {SelectedLine.Name}");
+                Sb.AppendLine($"Ref: {SelectedLine.Ref}");
+                Sb.AppendLine($"PO: {SelectedLine.PurchaseOrder}");
+                Sb.AppendLine($"Cliente: {SelectedLine.Client}");
+                Sb.AppendLine($"Data da encomenda: {SelectedLine.OrderDate.ToString("MM/dd/yyyy")}");
+                Sb.AppendLine($"Data de Entrega: {SelectedLine.LimitDate.ToString("MM/dd/yyyy")}");
+                Sb.AppendLine($"Estado: {Helpers.EnumHelper.GetDescription(SelectedLine.State)}");
+                Sb.AppendLine($"Estado Material: {Helpers.EnumHelper.GetDescription(SelectedLine.MaterialState)}");
+                Sb.AppendLine($"Notas: {SelectedLine.Notes}\n");
+            }
+            Clipboard.SetText(Sb.ToString());
         }
 
-        private void OptOrder_Selected(object sender, RoutedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if (DataGrid.SelectedItems.Count == 1)
+            {
+                MenuItem_Edit.IsEnabled = true;
+            }
+            else
+            {
+                MenuItem_Edit.IsEnabled = false;
+            }
         }
+
+        private void MenuEdit_Click(object sender, RoutedEventArgs e)
+        {
+            DataEditor.Title = "Editar Encomenda";
+            
+            DataEditor.ShowAsync();
+
+        }
+
+        private void MenuDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }

@@ -9,15 +9,7 @@ namespace Order_Processor.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Enum enumValue)
-            {
-                FieldInfo? field = enumValue.GetType().GetField(enumValue.ToString());
-                DescriptionAttribute? attribute = (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute))!;
-
-                return attribute == null ? enumValue.ToString() : attribute.Description;
-            }
-
-            return value.ToString()!;
+            return Helpers.EnumHelper.GetDescription(value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
