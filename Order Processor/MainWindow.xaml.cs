@@ -27,12 +27,11 @@ namespace Order_Processor
         private void Window_ContentRendered(object sender, EventArgs e) => _ = LoadData();
 
         #region Database Manage
-        Database? DB;
+        Database DB = new Database();
 
         private async Task LoadData()
         {
             await Task.Delay(1000);
-            DB = new Database();
             LoadSplash.Visibility = Visibility.Hidden;
 
 
@@ -82,19 +81,21 @@ namespace Order_Processor
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGrid.SelectedItems.Count == 1)
-            {
                 MenuItem_Edit.IsEnabled = true;
-            }
             else
-            {
                 MenuItem_Edit.IsEnabled = false;
-            }
         }
 
         private void MenuEdit_Click(object sender, RoutedEventArgs e)
         {
+            Types.OrderType CurrentItem = (Types.OrderType)DataGrid.SelectedItem;
             DataEditor.Title = "Editar Encomenda";
-            
+            DataEditor.NameBox.Text = CurrentItem.Name;
+            DataEditor.RefBox.Text = CurrentItem.Ref;
+            DataEditor.PurchaseOrderBox.Text = CurrentItem.PurchaseOrder;
+            DataEditor.ClientBox.Text = CurrentItem.Client;
+            DataEditor.PurchaseOrderBox.Text = CurrentItem.PurchaseOrder;
+            DataEditor.LimitDateDatePicker.SelectedDate = CurrentItem.LimitDate;
             DataEditor.ShowAsync();
 
         }
