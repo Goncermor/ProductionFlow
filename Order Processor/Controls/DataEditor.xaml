@@ -15,14 +15,19 @@
                 <x:Type TypeName="types:StateType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <ObjectDataProvider x:Key="MaterialStateEnumValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="types:MaterialStateType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </ui:ContentDialog.Resources>
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="274" Width="518">
         <TextBox x:Name="PurchaseOrderBox" ui:ControlHelper.PlaceholderText="Ordem de Compra" Margin="10,84,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="RefBox" ui:ControlHelper.PlaceholderText="Referencia" Margin="10,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240"/>
+        <TextBox x:Name="RefBox" ui:ControlHelper.PlaceholderText="Referencia" Margin="10,47,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="NameBox" ui:ControlHelper.PlaceholderText="Nome" Margin="10,10,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <ui:AutoSuggestBox x:Name="ClientBox" ui:ControlHelper.PlaceholderText="Cliente" Margin="10,0,268,0" IsTextSearchEnabled="True" TextChanged="ClientBox_TextChanged" VerticalAlignment="Center"/>
-        <ComboBox x:Name="StateComboBox" SelectedValuePath="Key" ItemsSource="{Binding Source={StaticResource StateEnumValues}, Converter={StaticResource EnumDescriptionConverter}}" ui:ControlHelper.PlaceholderText="Estado" Margin="10,195,0,0" Width="240" Height="32"/>
-        <ComboBox x:Name="MaterialStateComboBox" SelectedValuePath="Key" ItemsSource="{Binding Source={StaticResource StateEnumValues}, Converter={StaticResource EnumDescriptionConverter}}" ui:ControlHelper.PlaceholderText="Estado Material" Margin="10,232,268,0" HorizontalAlignment="Stretch" Height="32"/>
+        <ComboBox x:Name="StateComboBox" SelectedValuePath="Value" DisplayMemberPath="Description" ItemsSource="{Binding Source={StaticResource StateEnumValues}, Converter={StaticResource EnumDescriptionListConverter}}" ui:ControlHelper.PlaceholderText="Estado" Margin="10,195,268,0" Height="32" HorizontalAlignment="Stretch"/>
+        <ComboBox x:Name="MaterialStateComboBox" SelectedValuePath="Value" DisplayMemberPath="Description" ItemsSource="{Binding Source={StaticResource MaterialStateEnumValues}, Converter={StaticResource EnumDescriptionListConverter}}" ui:ControlHelper.PlaceholderText="Estado Material" Margin="10,232,268,0" HorizontalAlignment="Stretch" Height="32"/>
         <DatePicker x:Name="LimitDateDatePicker" ui:ControlHelper.PlaceholderText="Data de Entrega" Margin="10,158,268,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" SelectedDateFormat="Short" Height="32"/>
         <RichTextBox Margin="259,10,10,10" ui:ControlHelper.PlaceholderText="Notas"/>
     </Grid>

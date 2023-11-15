@@ -13,6 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="SonnyGothic">./Assets/SonnyGothic.otf</FontFamily>
             <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
+            <Converters:EnumDescriptionListConverter x:Key="EnumDescriptionListConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

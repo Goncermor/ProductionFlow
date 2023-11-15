@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Order_Processor.Helpers
 {
-    public class EnumHelper
+    public static class EnumHelper
     {
         public static string GetDescription(object EnumValue)
         {
@@ -19,6 +14,14 @@ namespace Order_Processor.Helpers
                 return attribute == null ? enumValue.ToString() : attribute.Description;
             }
             return EnumValue.ToString()!;
+        }
+
+        public static IEnumerable<Types.EnumItem> GetDescriptionList(Type TargetEnum)
+        {
+            List<Types.EnumItem> Values = new List<Types.EnumItem>();
+            Values.AddRange(Enum.GetValues(TargetEnum).Cast<Enum>().Select((e) => new Types.EnumItem { Value = e, Description = GetDescription(e)}).ToList());
+            return Values.ToList();
+            
         }
     }
 }
