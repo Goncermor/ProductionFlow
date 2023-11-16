@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Order_Processor.Types
 {
-    enum StateType
+    public enum StateType
     {
         [Description("Não definido")]
         [EnumMember(Value = "")]

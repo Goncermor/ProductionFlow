@@ -12,8 +12,12 @@
                 <ui:IntellisenseResources Source="/ModernWpf;component/DesignTime/DesignTimeResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="SonnyGothic">./Assets/SonnyGothic.otf</FontFamily>
+            
             <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
-            <Converters:EnumDescriptionListConverter x:Key="EnumDescriptionListConverter" />
+            <Converters:StateEnumConverter x:Key="StateEnumConverter" />
+            <Converters:MaterialStateEnumConverter x:Key="MaterialStateEnumConverter" />
+
+            <Converters:UnixTimestampToDateConverter x:Key="UnixTimestampToDateConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

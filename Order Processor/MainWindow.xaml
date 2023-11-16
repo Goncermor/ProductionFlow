@@ -21,8 +21,8 @@
                 <DataGridTextColumn Header="Ref" Binding="{Binding Ref}"/>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Cliente" Binding="{Binding Client}" />
-                <DataGridTextColumn Header="Data de Entrega" Binding="{Binding LimitDate, StringFormat={}{0:MM/dd/yyyy}}" />
-                <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, StringFormat={}{0:MM/dd/yyyy}}" />
+                <DataGridTextColumn Header="Data de Entrega" Binding="{Binding LimitDate, Converter={StaticResource UnixTimestampToDateConverter}}" />
+                <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, Converter={StaticResource UnixTimestampToDateConverter}}" />
                 <DataGridTextColumn Header="Estado" Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Estado Material" Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Notas" Binding="{Binding Notes}" />

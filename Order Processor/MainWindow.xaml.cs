@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Windows.UI.WebUI;
-
 namespace Order_Processor
 {
     public partial class MainWindow : Window
@@ -26,22 +14,24 @@ namespace Order_Processor
 
         private void Window_ContentRendered(object sender, EventArgs e) => _ = LoadData();
 
-        #region Database Manage
-        Database DB = new Database();
+        #region Database Manager
 
         private async Task LoadData()
         {
+            MessageBox.Show(Helpers.EnumHelper.GetDescriptionList(typeof(Types.StateType))[0] );
+
             await Task.Delay(1000);
             LoadSplash.Visibility = Visibility.Hidden;
 
 
-            DataGrid.ItemsSource = DB.OrderList;
-            DataEditor.ClientList = DB.ClientList;
+            DataGrid.ItemsSource = Database.OrderList;
+            DataEditor.ClientList = Database.ClientList;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            DataEditor.Title = "Adicionar Encomenda";
+            DataEditor.IsEditMode = false;
+            DataEditor.LimitDateDatePicker.SelectedDate = DateTime.Now; 
             DataEditor.ShowAsync();
 
         }
@@ -88,16 +78,18 @@ namespace Order_Processor
 
         private void MenuEdit_Click(object sender, RoutedEventArgs e)
         {
+            DataEditor.IsEditMode = true;
             Types.OrderType CurrentItem = (Types.OrderType)DataGrid.SelectedItem;
-            DataEditor.Title = "Editar Encomenda";
             DataEditor.NameBox.Text = CurrentItem.Name;
             DataEditor.RefBox.Text = CurrentItem.Ref;
             DataEditor.PurchaseOrderBox.Text = CurrentItem.PurchaseOrder;
             DataEditor.ClientBox.Text = CurrentItem.Client;
             DataEditor.PurchaseOrderBox.Text = CurrentItem.PurchaseOrder;
-            DataEditor.LimitDateDatePicker.SelectedDate = CurrentItem.LimitDate;
+            DataEditor.LimitDateDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(CurrentItem.LimitDate).Date;
+            DataEditor.NotesBox.Text = CurrentItem.Notes;
+            DataEditor.StateComboBox.SelectedIndex = (int)CurrentItem.State;
+            DataEditor.MaterialStateComboBox.SelectedIndex = (int)CurrentItem.MaterialState;
             DataEditor.ShowAsync();
-
         }
 
         private void MenuDelete_Click(object sender, RoutedEventArgs e)

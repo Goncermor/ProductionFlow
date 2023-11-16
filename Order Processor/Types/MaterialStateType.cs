@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Order_Processor.Types
 {
-    enum MaterialStateType
+    public enum MaterialStateType
     {
         [Description("Não definido")]
         [EnumMember(Value = "")]

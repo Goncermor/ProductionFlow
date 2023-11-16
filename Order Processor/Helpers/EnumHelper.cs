@@ -16,12 +16,12 @@ namespace Order_Processor.Helpers
             return EnumValue.ToString()!;
         }
 
-        public static IEnumerable<Types.EnumItem> GetDescriptionList(Type TargetEnum)
+        public static string[] GetDescriptionList(Type TargetEnum)
         {
-            List<Types.EnumItem> Values = new List<Types.EnumItem>();
-            Values.AddRange(Enum.GetValues(TargetEnum).Cast<Enum>().Select((e) => new Types.EnumItem { Value = e, Description = GetDescription(e)}).ToList());
-            return Values.ToList();
-            
+            List<string> List = new List<string>();
+            foreach (object Item in Enum.GetValues(TargetEnum))
+                List.Add(GetDescription(Item));
+            return List.ToArray();
         }
     }
 }

@@ -13,16 +13,15 @@ namespace Order_Processor.Types
         [JsonPropertyName("c")]
         public string Client { get; set; } = "";
         [JsonPropertyName("ld")]
-        public DateTime LimitDate { get; set; }
+        public long LimitDate { get; set; }
         [JsonPropertyName("od")]
-        public DateTime OrderDate { get; set; }
+        public long OrderDate { get; set; }
         [JsonPropertyName("s")]
         public StateType State { get; set; } = StateType.Undefined;
-        [JsonPropertyName("d")]
-        public string Notes { get; set; } = "";
-        [JsonPropertyName("no")]
+        [JsonPropertyName("ms")]
         public MaterialStateType MaterialState { get; set; } = MaterialStateType.Undefined;
-
+        [JsonPropertyName("no")]
+        public string Notes { get; set; } = "";
 
     }
 }

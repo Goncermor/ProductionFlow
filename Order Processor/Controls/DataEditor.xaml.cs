@@ -5,6 +5,13 @@ namespace Order_Processor.Controls
 {
     public partial class DataEditor : ContentDialog
     {
+        public bool IsEditMode { 
+            set
+            {
+                if (value) this.Title = "Editar Encomenda";
+                else this.Title = "Criar Encomenda";
+            }
+        }
         public List<string> ClientList = new List<string>();
         public DataEditor()
         {
