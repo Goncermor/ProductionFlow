@@ -7,20 +7,7 @@
              xmlns:types="clr-namespace:Order_Processor.Types"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="Order_Processor.Controls.DataEditor"
-             mc:Ignorable="d" Title="" DefaultButton="Primary" PrimaryButtonText="Guardar" SecondaryButtonText="Cancelar" BorderBrush="Red" IsPrimaryButtonEnabled="False">
-
-    <ui:ContentDialog.Resources>
-        <ObjectDataProvider x:Key="StateEnumValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="types:StateType"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-        <ObjectDataProvider x:Key="MaterialStateEnumValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="types:MaterialStateType"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </ui:ContentDialog.Resources>
+             mc:Ignorable="d" Title="" DefaultButton="Primary" PrimaryButtonText="Guardar" SecondaryButtonText="Cancelar" BorderBrush="Red" IsPrimaryButtonEnabled="True">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="274" Width="518">
         <TextBox x:Name="PurchaseOrderBox" ui:ControlHelper.PlaceholderText="Ordem de Compra" Margin="10,84,268,0" TextWrapping="Wrap" VerticalAlignment="Top" AutomationProperties.IsRequiredForForm="True"/>
         <TextBox x:Name="RefBox" ui:ControlHelper.PlaceholderText="Referencia" Margin="10,47,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>

@@ -5,9 +5,6 @@ namespace Order_Processor.Types
 {
     public enum MaterialStateType
     {
-        [Description("Não definido")]
-        [EnumMember(Value = "")]
-        Undefined,
         [Description("Encomendado")]
         [EnumMember(Value = "OR")]
         Orderd,

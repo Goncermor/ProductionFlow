@@ -15,7 +15,7 @@
         ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
 
     <Grid>
-        <DataGrid x:Name="DataGrid" Margin="10,10,10,61" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" LoadingRow="DataGrid_LoadingRow" Margin="10,10,10,61" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="PO" Binding="{Binding PurchaseOrder}" />
                 <DataGridTextColumn Header="Ref" Binding="{Binding Ref}"/>
