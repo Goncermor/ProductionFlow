@@ -10,6 +10,14 @@
         Height="240"
         Width="400"
         Background="Black" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" ContentRendered="Window_ContentRendered">
+    <Window.Resources>
+        <Storyboard x:Key="WriteSignature">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.StrokeDashOffset)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="301"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
     <Border BorderBrush="Red" BorderThickness="1,1,1,1">
         <Grid>
             <Grid.Background>
@@ -20,7 +28,11 @@
             </Grid.Background>
             <Image Margin="24,0,0,24" HorizontalAlignment="Left" Width="50" Height="50" VerticalAlignment="Bottom" Source="/Assets/Flag.ico"/>
             <Label Content="Order Processor" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" FontFamily="{StaticResource SonnyGothic}" FontSize="24"/>
-            <Label Content="By Goncermor" Margin="0,0,34,34" FontFamily="{StaticResource SonnyGothic}" Height="17" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="DarkGray"/>
+            <Path x:Name="path" StrokeThickness="2" Stretch="Fill" Margin="298,138,25,25" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Width="75" Height="75" Stroke="White" StrokeDashArray="300" StrokeDashOffset="301" >
+                <Path.Data>
+                    <PathGeometry Figures="M289,10.5 C229.419,26.5 217.176,56.0317 205,102.5 205,149 189,187.286 289,237 360.946,261.701 405.648,243.48 430.679,187.286 444.489,156.285 452.51,108.099 423.319,82 336.362,4.25424 234.315,203.738 223.258,255.213 216.338,287.432 223.258,346 253.5,363.896 283.742,381.792 306.321,383 368.5,346 430.679,309 416.5,321.5 473.716,270.459 492.5,256 460.623,365.499 459.331,371.114 432.69,486.894 397.99,604.553 347.5,713.111 313.187,786.886 293.5,854.5 253.5,923 229.558,964 116.5,957 147,865 197.85,680.31 504.819,404.756 562,371.114 599.5,349.051 620.094,357.594 638.649,371.114 657.205,384.633 642.967,430.433 639.988,448.303 638.649,467.755 622.628,497.328 638.649,467.755 657.145,433.615 675.835,400.332 712.92,382.229 726.926,375.392 746,379.885 764.5,391 794.789,409.199 776.203,459.425 774.5,467.755 766.602,506.387 779.374,451.303 796,429.5 829.5,394 860.5,388.943 886.5,391 931.619,394.569 945.47,440.904 938.5,479.5 915.524,606.726 833.162,710.781 712.92,755.209 550.558,815.198 352.6,835.767 178.643,825.606 129.226,822.719 61.5831,816.291 23.0773,781.762 -4.66889,756.881 16.2649,730.255 43.8194,717.54 82.6219,699.635 119.392,697.78 162.919,697.78 278.76,697.78 394.877,720.475 508.175,739.771 675.292,768.233 841.821,797.951 1010,820.666"/>
+                </Path.Data>
+            </Path>
         </Grid>
     </Border>
 </Window>

@@ -2,7 +2,7 @@
 
 namespace Order_Processor.Types
 {
-    class OrderType
+    public class OrderType
     {
         [JsonPropertyName("po")]
         public string PurchaseOrder { get; set; } = "";

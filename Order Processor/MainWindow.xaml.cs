@@ -18,8 +18,6 @@ namespace Order_Processor
 
         private async Task LoadData()
         {
-            MessageBox.Show(Helpers.EnumHelper.GetDescriptionList(typeof(Types.StateType))[0] );
-
             await Task.Delay(1000);
             LoadSplash.Visibility = Visibility.Hidden;
 
@@ -31,9 +29,16 @@ namespace Order_Processor
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             DataEditor.IsEditMode = false;
-            DataEditor.LimitDateDatePicker.SelectedDate = DateTime.Now; 
+            DataEditor.LimitDateDatePicker.SelectedDate = DateTime.Now;
+            DataEditor.NameBox.Text = "";
+            DataEditor.RefBox.Text = "";
+            DataEditor.PurchaseOrderBox.Text = "";
+            DataEditor.ClientBox.Text = "";
+            DataEditor.PurchaseOrderBox.Text = "";
+            DataEditor.NotesBox.Text = "";
+            DataEditor.StateComboBox.SelectedIndex = (int)Types.StateType.Undefined;
+            DataEditor.MaterialStateComboBox.SelectedIndex = (int)Types.MaterialStateType.Undefined;
             DataEditor.ShowAsync();
-
         }
 
         #endregion

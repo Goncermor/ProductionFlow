@@ -2,7 +2,7 @@
 using System.Text.Json;
 namespace Order_Processor
 {
-    class Database
+    public class Database
     {
         public static List<string> ClientList = new List<string>();
         public static List<Types.OrderType> OrderList = new List<Types.OrderType>();
