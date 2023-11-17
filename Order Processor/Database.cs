@@ -12,7 +12,8 @@ namespace Order_Processor
             if (!File.Exists(Config.DB_File)) File.WriteAllText(Config.DB_File, "[]");
             Types.OrderType[]? ReadValues = JsonSerializer.Deserialize<Types.OrderType[]>(File.ReadAllText(Config.DB_File));
             OrderList.AddRange(ReadValues!);
-            foreach (Types.OrderType Order in ReadValues!) ClientList.Add(Order.Client);
+            foreach (Types.OrderType Order in ReadValues!)
+                if (!ClientList.Contains(Order.Client)) ClientList.Add(Order.Client);
         }
         public static void SaveDb()
         {

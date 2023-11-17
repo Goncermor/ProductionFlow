@@ -57,7 +57,8 @@ namespace Order_Processor
                     Notes = DataEditor.NotesBox.Text
                 };
                 Database.OrderList.Add(NewOrder);
-                Database.ClientList.Add(DataEditor.ClientBox.Text);
+                if (!Database.ClientList.Contains(DataEditor.ClientBox.Text)) Database.ClientList.Add(DataEditor.ClientBox.Text);
+                Database.SaveDb();
                 DataGrid.Items.Refresh();
             }
 
@@ -127,6 +128,7 @@ namespace Order_Processor
                 Database.OrderList[CurrentItem].LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds();
                 Database.OrderList[CurrentItem].OrderDate = DateTimeOffset.Now.ToUnixTimeSeconds();
                 Database.OrderList[CurrentItem].Notes = DataEditor.NotesBox.Text;
+                if (!Database.ClientList.Contains(DataEditor.ClientBox.Text)) Database.ClientList.Add(DataEditor.ClientBox.Text);
                 Database.SaveDb();
                 DataGrid.Items.Refresh();
             }
