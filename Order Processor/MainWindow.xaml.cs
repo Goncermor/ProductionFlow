@@ -94,8 +94,8 @@ namespace Order_Processor
                 Sb.AppendLine($"Ref: {SelectedLine.Ref}");
                 Sb.AppendLine($"PO: {SelectedLine.PurchaseOrder}");
                 Sb.AppendLine($"Cliente: {SelectedLine.Client}");
-                Sb.AppendLine($"Data da encomenda: {SelectedLine.OrderDate.ToString("MM/dd/yyyy")}");
-                Sb.AppendLine($"Data de Entrega: {SelectedLine.LimitDate.ToString("MM/dd/yyyy")}");
+                Sb.AppendLine($"Data da encomenda: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.OrderDate).ToString("MM/dd/yyyy")}");
+                Sb.AppendLine($"Data de Entrega: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.LimitDate).ToString("MM/dd/yyyy")}");
                 Sb.AppendLine($"Estado: {Helpers.EnumHelper.GetDescription(SelectedLine.State)}");
                 Sb.AppendLine($"Estado Material: {Helpers.EnumHelper.GetDescription(SelectedLine.MaterialState)}");
                 Sb.AppendLine($"Notas: {SelectedLine.Notes}\n");
@@ -105,17 +105,31 @@ namespace Order_Processor
         private async void MenuEdit_Click(object sender, RoutedEventArgs e)
         {
             DataEditor.IsEditMode = true;
-            Types.OrderType CurrentItem = (Types.OrderType)DataGrid.SelectedItem;
-            DataEditor.NameBox.Text = CurrentItem.Name;
-            DataEditor.RefBox.Text = CurrentItem.Ref;
-            DataEditor.PurchaseOrderBox.Text = CurrentItem.PurchaseOrder;
-            DataEditor.ClientBox.Text = CurrentItem.Client;
-            DataEditor.PurchaseOrderBox.Text = CurrentItem.PurchaseOrder;
-            DataEditor.LimitDateDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(CurrentItem.LimitDate).Date;
-            DataEditor.NotesBox.Text = CurrentItem.Notes;
-            DataEditor.StateComboBox.SelectedIndex = (int)CurrentItem.State;
-            DataEditor.MaterialStateComboBox.SelectedIndex = (int)CurrentItem.MaterialState;
-            await DataEditor.ShowAsync();
+            int CurrentItem = Database.OrderList.IndexOf((Types.OrderType)DataGrid.SelectedItem);
+            DataEditor.NameBox.Text = Database.OrderList[CurrentItem].Name;
+            DataEditor.RefBox.Text = Database.OrderList[CurrentItem].Ref;
+            DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
+            DataEditor.ClientBox.Text = Database.OrderList[CurrentItem].Client;
+            DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
+            DataEditor.LimitDateDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].LimitDate).Date;
+            DataEditor.NotesBox.Text = Database.OrderList[CurrentItem].Notes;
+            DataEditor.StateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].State;
+            DataEditor.MaterialStateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].MaterialState;
+            ContentDialogResult Result = await DataEditor.ShowAsync();
+            if (Result == ContentDialogResult.Primary)
+            {
+                Database.OrderList[CurrentItem].Client = DataEditor.ClientBox.Text;
+                Database.OrderList[CurrentItem].Name = DataEditor.NameBox.Text;
+                Database.OrderList[CurrentItem].Ref = DataEditor.RefBox.Text;
+                Database.OrderList[CurrentItem].PurchaseOrder = DataEditor.PurchaseOrderBox.Text;
+                Database.OrderList[CurrentItem].State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex;
+                Database.OrderList[CurrentItem].MaterialState = (Types.MaterialStateType)DataEditor.MaterialStateComboBox.SelectedIndex;
+                Database.OrderList[CurrentItem].LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds();
+                Database.OrderList[CurrentItem].OrderDate = DateTimeOffset.Now.ToUnixTimeSeconds();
+                Database.OrderList[CurrentItem].Notes = DataEditor.NotesBox.Text;
+                Database.SaveDb();
+                DataGrid.Items.Refresh();
+            }
         }
         private void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
