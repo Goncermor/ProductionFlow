@@ -12,19 +12,20 @@
         Width="1000"
         Background="Black"
         Icon="/Assets/Flag.ico"
-        ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+        ui:TitleBar.IsIconVisible="True" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered" Closing="Window_Closing">
 
     <Grid>
         <DataGrid x:Name="DataGrid" LoadingRow="DataGrid_LoadingRow" Margin="10,10,10,61" GridLinesVisibility="All" HorizontalGridLinesBrush="Red" VerticalGridLinesBrush="Red" BorderBrush="Red" BorderThickness="1,1,1,1" ClipboardCopyMode="IncludeHeader" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalContentAlignment="Center" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding Client}" />
                 <DataGridTextColumn Header="PO" Binding="{Binding PurchaseOrder}" />
                 <DataGridTextColumn Header="Ref" Binding="{Binding Ref}"/>
-                <DataGridTextColumn Header="Nome" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Cliente" Binding="{Binding Client}" />
+                <DataGridTextColumn Header="Qtd" Binding="{Binding Amount}" />
+                <DataGridTextColumn Header="Preço/U" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Data Encomenda" Binding="{Binding OrderDate, Converter={StaticResource UnixTimestampToDateConverter}}" />
                 <DataGridTextColumn Header="Data de Entrega" Binding="{Binding LimitDate, Converter={StaticResource UnixTimestampToDateConverter}}" />
-                <DataGridTextColumn Header="Data encomenda" Binding="{Binding OrderDate, Converter={StaticResource UnixTimestampToDateConverter}}" />
-                <DataGridTextColumn Header="Estado" Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Estado Material" Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" />
+                <DataGridTextColumn Header="Estado" Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" />
                 <DataGridTextColumn Header="Notas" Binding="{Binding Notes}" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
@@ -37,7 +38,7 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <Button x:Name="BtnAdd" Content="Adicionar" Margin="0,0,14,14" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="85" Click="BtnAdd_Click" />
-        <CheckBox x:Name="ShowSent" Content="Mostrar enviados" Margin="0,0,119,16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+        <CheckBox x:Name="ShowSent" Content="Mostrar enviados" Margin="0,0,119,16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135" IsEnabled="False"/>
         <Label Content="By Goncermor" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="110" Margin="15,0,0,15" Height="32" VerticalAlignment="Bottom" Foreground="DarkGray"/>
         <Controls:LoadingControl x:Name="LoadSplash"/>
         <Controls:DataEditor x:Name="DataEditor"/>

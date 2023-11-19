@@ -34,12 +34,14 @@ namespace Order_Processor
         {
             DataEditor.IsEditMode = false;
             DataEditor.LimitDateDatePicker.SelectedDate = DateTime.Now;
-            DataEditor.NameBox.Text = "";
+            DataEditor.OrderDatePicker.SelectedDate = DateTime.Now;
+            DataEditor.PriceBox.Text = "";
             DataEditor.RefBox.Text = "";
             DataEditor.PurchaseOrderBox.Text = "";
             DataEditor.ClientBox.Text = "";
             DataEditor.PurchaseOrderBox.Text = "";
             DataEditor.NotesBox.Text = "";
+            DataEditor.AmountBox.Value = 0;
             DataEditor.StateComboBox.SelectedIndex = -1;
             DataEditor.MaterialStateComboBox.SelectedIndex = -1;
             ContentDialogResult Result = await DataEditor.ShowAsync();
@@ -47,13 +49,14 @@ namespace Order_Processor
             {
                 OrderType NewOrder = new OrderType() {
                     Client = DataEditor.ClientBox.Text,
-                    Name = DataEditor.NameBox.Text,
+                    Price = DataEditor.PriceBox.Text,
+                    Amount = DataEditor.AmountBox.Value,
                     Ref = DataEditor.RefBox.Text,
                     PurchaseOrder = DataEditor.PurchaseOrderBox.Text,
                     State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex,
                     MaterialState = (Types.MaterialStateType)DataEditor.MaterialStateComboBox.SelectedIndex,
                     LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
-                    OrderDate = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                    OrderDate = ((DateTimeOffset)DataEditor.OrderDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
                     Notes = DataEditor.NotesBox.Text
                 };
                 Database.OrderList.Add(NewOrder);
@@ -91,14 +94,15 @@ namespace Order_Processor
             foreach (object SelectedItem in DataGrid.SelectedItems)
             {
                 Types.OrderType SelectedLine = (Types.OrderType)SelectedItem;
-                Sb.AppendLine($"Nome: {SelectedLine.Name}");
-                Sb.AppendLine($"Ref: {SelectedLine.Ref}");
-                Sb.AppendLine($"PO: {SelectedLine.PurchaseOrder}");
                 Sb.AppendLine($"Cliente: {SelectedLine.Client}");
-                Sb.AppendLine($"Data da encomenda: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.OrderDate).ToString("MM/dd/yyyy")}");
+                Sb.AppendLine($"PO: {SelectedLine.PurchaseOrder}");
+                Sb.AppendLine($"Ref: {SelectedLine.Ref}");
+                Sb.AppendLine($"Qtd: {SelectedLine.Amount}");
+                Sb.AppendLine($"Preço/U: {SelectedLine.Price}");
+                Sb.AppendLine($"Data da Encomenda: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.OrderDate).ToString("MM/dd/yyyy")}");
                 Sb.AppendLine($"Data de Entrega: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.LimitDate).ToString("MM/dd/yyyy")}");
-                Sb.AppendLine($"Estado: {Helpers.EnumHelper.GetDescription(SelectedLine.State)}");
                 Sb.AppendLine($"Estado Material: {Helpers.EnumHelper.GetDescription(SelectedLine.MaterialState)}");
+                Sb.AppendLine($"Estado: {Helpers.EnumHelper.GetDescription(SelectedLine.State)}");
                 Sb.AppendLine($"Notas: {SelectedLine.Notes}\n");
             }
             Clipboard.SetText(Sb.ToString());
@@ -107,12 +111,13 @@ namespace Order_Processor
         {
             DataEditor.IsEditMode = true;
             int CurrentItem = Database.OrderList.IndexOf((Types.OrderType)DataGrid.SelectedItem);
-            DataEditor.NameBox.Text = Database.OrderList[CurrentItem].Name;
+            DataEditor.PriceBox.Text = Database.OrderList[CurrentItem].Price;
             DataEditor.RefBox.Text = Database.OrderList[CurrentItem].Ref;
             DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
             DataEditor.ClientBox.Text = Database.OrderList[CurrentItem].Client;
             DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
             DataEditor.LimitDateDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].LimitDate).Date;
+            DataEditor.OrderDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].OrderDate).Date;
             DataEditor.NotesBox.Text = Database.OrderList[CurrentItem].Notes;
             DataEditor.StateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].State;
             DataEditor.MaterialStateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].MaterialState;
@@ -120,13 +125,14 @@ namespace Order_Processor
             if (Result == ContentDialogResult.Primary)
             {
                 Database.OrderList[CurrentItem].Client = DataEditor.ClientBox.Text;
-                Database.OrderList[CurrentItem].Name = DataEditor.NameBox.Text;
+                Database.OrderList[CurrentItem].Price = DataEditor.PriceBox.Text;
+                Database.OrderList[CurrentItem].Amount = DataEditor.AmountBox.Value;
                 Database.OrderList[CurrentItem].Ref = DataEditor.RefBox.Text;
                 Database.OrderList[CurrentItem].PurchaseOrder = DataEditor.PurchaseOrderBox.Text;
                 Database.OrderList[CurrentItem].State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex;
                 Database.OrderList[CurrentItem].MaterialState = (Types.MaterialStateType)DataEditor.MaterialStateComboBox.SelectedIndex;
                 Database.OrderList[CurrentItem].LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds();
-                Database.OrderList[CurrentItem].OrderDate = DateTimeOffset.Now.ToUnixTimeSeconds();
+                Database.OrderList[CurrentItem].OrderDate = ((DateTimeOffset)DataEditor.OrderDatePicker.SelectedDate.Value).ToUnixTimeSeconds();
                 Database.OrderList[CurrentItem].Notes = DataEditor.NotesBox.Text;
                 if (!Database.ClientList.Contains(DataEditor.ClientBox.Text)) Database.ClientList.Add(DataEditor.ClientBox.Text);
                 Database.SaveDb();
@@ -148,6 +154,11 @@ namespace Order_Processor
         {
             
             // e.Row.Background = new SolidColorBrush(Color.FromRgb(255,0,0));
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
