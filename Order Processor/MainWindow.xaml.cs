@@ -33,15 +33,13 @@ namespace Order_Processor
         private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             DataEditor.IsEditMode = false;
-            DataEditor.LimitDateDatePicker.SelectedDate = DateTime.Now;
-            DataEditor.OrderDatePicker.SelectedDate = DateTime.Now;
             DataEditor.PriceBox.Text = "";
             DataEditor.RefBox.Text = "";
             DataEditor.PurchaseOrderBox.Text = "";
             DataEditor.ClientBox.Text = "";
             DataEditor.PurchaseOrderBox.Text = "";
             DataEditor.NotesBox.Text = "";
-            DataEditor.AmountBox.Value = 0;
+            DataEditor.AmountBox.Text = "";
             DataEditor.StateComboBox.SelectedIndex = -1;
             DataEditor.MaterialStateComboBox.SelectedIndex = -1;
             ContentDialogResult Result = await DataEditor.ShowAsync();
@@ -50,7 +48,7 @@ namespace Order_Processor
                 OrderType NewOrder = new OrderType() {
                     Client = DataEditor.ClientBox.Text,
                     Price = DataEditor.PriceBox.Text,
-                    Amount = DataEditor.AmountBox.Value,
+                    Amount = DataEditor.AmountBox.Text,
                     Ref = DataEditor.RefBox.Text,
                     PurchaseOrder = DataEditor.PurchaseOrderBox.Text,
                     State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex,
@@ -113,6 +111,7 @@ namespace Order_Processor
             int CurrentItem = Database.OrderList.IndexOf((Types.OrderType)DataGrid.SelectedItem);
             DataEditor.PriceBox.Text = Database.OrderList[CurrentItem].Price;
             DataEditor.RefBox.Text = Database.OrderList[CurrentItem].Ref;
+            DataEditor.AmountBox.Text = Database.OrderList[CurrentItem].Amount;
             DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
             DataEditor.ClientBox.Text = Database.OrderList[CurrentItem].Client;
             DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
@@ -126,7 +125,7 @@ namespace Order_Processor
             {
                 Database.OrderList[CurrentItem].Client = DataEditor.ClientBox.Text;
                 Database.OrderList[CurrentItem].Price = DataEditor.PriceBox.Text;
-                Database.OrderList[CurrentItem].Amount = DataEditor.AmountBox.Value;
+                Database.OrderList[CurrentItem].Amount = DataEditor.AmountBox.Text;
                 Database.OrderList[CurrentItem].Ref = DataEditor.RefBox.Text;
                 Database.OrderList[CurrentItem].PurchaseOrder = DataEditor.PurchaseOrderBox.Text;
                 Database.OrderList[CurrentItem].State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex;

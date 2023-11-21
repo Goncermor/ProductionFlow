@@ -11,7 +11,7 @@ namespace Order_Processor.Types
         [JsonPropertyName("p")]
         public string Price { get; set; } = "";
         [JsonPropertyName("a")]
-        public double Amount { get; set; } = 0;
+        public string Amount { get; set; } = "";
         [JsonPropertyName("c")]
         public string Client { get; set; } = "";
         [JsonPropertyName("ld")]

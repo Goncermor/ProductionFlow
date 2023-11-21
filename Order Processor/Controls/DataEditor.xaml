@@ -11,8 +11,8 @@
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="348" Width="518">
         <TextBox x:Name="PurchaseOrderBox" ui:ControlHelper.PlaceholderText="Ordem de Compra" Margin="10,47,268,0" TextWrapping="Wrap" VerticalAlignment="Top" AutomationProperties.IsRequiredForForm="True"/>
         <TextBox x:Name="RefBox" ui:ControlHelper.PlaceholderText="Referencia" Margin="10,84,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="PriceBox" ui:ControlHelper.PlaceholderText="Preço por unidade" Margin="10,158,268,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <NumericU x:Name="AmountBox" ui:ControlHelper.PlaceholderText="Quantidade" Margin="10,121,268,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="PriceBox"  Margin="10,158,268,0" VerticalAlignment="Top" ui:ControlHelper.PlaceholderText="Preço por unidade"/>
+        <TextBox x:Name="AmountBox"  Margin="10,121,268,0" VerticalAlignment="Top" ui:ControlHelper.PlaceholderText="Quantidade"/>
         <ui:AutoSuggestBox x:Name="ClientBox" ui:ControlHelper.PlaceholderText="Cliente" Margin="10,10,268,0" IsTextSearchEnabled="True" TextChanged="ClientBox_TextChanged"/>
         <ComboBox x:Name="StateComboBox" ItemsSource="{Binding Source={StaticResource StateEnumConverter}, Path=Items}" ui:ControlHelper.PlaceholderText="Estado" Margin="10,306,268,0" Height="32" HorizontalAlignment="Stretch" SelectedIndex="0"/>
         <ComboBox x:Name="MaterialStateComboBox" ItemsSource="{Binding Source={StaticResource MaterialStateEnumConverter}, Path=Items}" ui:ControlHelper.PlaceholderText="Estado Material" Margin="10,269,268,0" HorizontalAlignment="Stretch" Height="32" SelectedIndex="0"/>
