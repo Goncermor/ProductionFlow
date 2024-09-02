@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Order_Processor.Controls
+namespace Production_Flow.Controls
 {
     /// <summary>
     /// Interação lógica para LoadingControl.xam

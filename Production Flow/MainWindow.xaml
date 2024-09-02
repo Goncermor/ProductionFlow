@@ -1,0 +1,98 @@
+﻿<Window
+    x:Class="Production_Flow.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Production_Flow.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    Title="RPJM - Production Flow"
+    Width="1000"
+    Height="542"
+    ui:TitleBar.IsIconVisible="True"
+    ui:WindowHelper.UseModernWindowStyle="True"
+    Background="Black"
+    Closing="Window_Closing"
+    ContentRendered="Window_ContentRendered"
+    Icon="/Assets/Flag.ico"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Grid>
+        <DataGrid
+            x:Name="DataGrid"
+            Margin="10,10,10,61"
+            HorizontalContentAlignment="Center"
+            AutoGenerateColumns="False"
+            BorderBrush="Red"
+            BorderThickness="1,1,1,1"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            ClipboardCopyMode="IncludeHeader"
+            GridLinesVisibility="All"
+            HorizontalGridLinesBrush="Red"
+            IsReadOnly="True"
+            LoadingRow="DataGrid_LoadingRow"
+            SelectionChanged="DataGrid_SelectionChanged"
+            VerticalGridLinesBrush="Red">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Client}" Header="Cliente" />
+                <DataGridTextColumn Binding="{Binding PurchaseOrder}" Header="PO" />
+                <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" />
+                <DataGridTextColumn Binding="{Binding Amount}" Header="Qtd" />
+                <DataGridTextColumn Binding="{Binding Price}" Header="Preço/U" />
+                <DataGridTextColumn Binding="{Binding OrderDate, Converter={StaticResource UnixTimestampToDateConverter}}" Header="Data Encomenda" />
+                <DataGridTextColumn Binding="{Binding LimitDate, Converter={StaticResource UnixTimestampToDateConverter}}" Header="Data de Entrega" />
+                <DataGridTextColumn Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" Header="Estado Material" />
+                <DataGridTextColumn Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" Header="Estado" />
+                <DataGridTextColumn Binding="{Binding Notes}" Header="Notas" />
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Click="MenuCopy_Click" Header="Copiar" />
+                    <MenuItem
+                        x:Name="MenuItem_Edit"
+                        Click="MenuEdit_Click"
+                        Header="Editar"
+                        IsEnabled="False" />
+                    <Separator />
+                    <MenuItem
+                        Background="Red"
+                        Click="MenuDelete_Click"
+                        Header="Apagar" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Button
+            x:Name="BtnAdd"
+            Width="85"
+            Height="36"
+            Margin="0,0,14,14"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Click="BtnAdd_Click"
+            Content="Adicionar" />
+        <CheckBox
+            x:Name="ShowSent"
+            Width="135"
+            Margin="0,0,119,16"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Content="Mostrar enviados"
+            IsEnabled="False" />
+        <Label
+            Width="110"
+            Height="32"
+            Margin="15,0,0,15"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Content="By Goncermor"
+            Foreground="DarkGray" />
+        <Controls:LoadingControl x:Name="LoadSplash" />
+        <Controls:DataEditor x:Name="DataEditor" />
+    </Grid>
+</Window>

@@ -1,11 +1,11 @@
 ﻿using ModernWpf.Controls;
-using Order_Processor.Types;
+using Production_Flow.Types;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Order_Processor
+namespace Production_Flow
 {
     public partial class MainWindow : Window
     {

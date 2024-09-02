@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace Order_Processor.Types
+namespace Production_Flow.Types
 {
     public enum StateType
     {

@@ -1,0 +1,70 @@
+﻿<Window
+    x:Class="Production_Flow.Splash"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Production_Flow"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    Title="RPJM - Production Flow"
+    Width="400"
+    Height="240"
+    Background="Black"
+    ContentRendered="Window_ContentRendered"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard x:Key="WriteSignature">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Path" Storyboard.TargetProperty="(Shape.StrokeDashOffset)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="301" />
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0">
+                    <SplineDoubleKeyFrame.KeySpline>
+                        <KeySpline ControlPoint1="0.81,0" ControlPoint2="1,1" />
+                    </SplineDoubleKeyFrame.KeySpline>
+                </SplineDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Border BorderBrush="Red" BorderThickness="1,1,1,1">
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="Black" />
+                    <GradientStop Offset="1" Color="#FF540000" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image
+                Width="50"
+                Height="50"
+                Margin="24,0,0,24"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Source="/Assets/Flag.ico" />
+            <Label
+                Margin="24,24,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Production Flow"
+                FontFamily="{DynamicResource SonnyGothic}"
+                FontSize="24" />
+            <Path
+                x:Name="Path"
+                Width="100"
+                Height="100"
+                Margin="278,118,20,20"
+                Stretch="Fill"
+                Stroke="White"
+                StrokeDashArray="300"
+                StrokeDashOffset="301"
+                StrokeEndLineCap="Round"
+                StrokeStartLineCap="Round"
+                StrokeThickness="2">
+                <Path.Data>
+                    <PathGeometry Figures="M154.958,10.8913 C150.029,46.2849 145.186,75.6363 147.673,119.303 150.822,174.597 168.337,213.141 205.208,241.164 252.646,277.219 297.6,267.013 319.267,221.052 340.935,175.091 333.012,130.895 299.732,110.261 226.404,64.7983 140,238 170.142,324.477 172.216,330.428 187.5,361.502 214.5,376.067 241.5,390.633 284.128,383.215 306.5,369 328.872,354.785 343.5,341 357.756,307.852 373.743,290.351 361.364,403.721 361.067,409.476 354.936,528.123 310.322,765.696 310.322,765.696 310.322,765.696 281.695,914.314 254.197,988.719 237.739,1033.25 125.183,1045.99 139.244,950.094 157.25,759.38 411.706,434.708 462.177,391.647 495.276,363.407 517.041,368.245 537.662,378.337 558.282,388.429 552.214,436.005 552.383,454.122 554.443,473.51 543.8,505.416 554.443,473.51 566.73,436.678 579.355,400.654 612.734,376.387 625.34,367.221 644.904,368.333 665.053,376.067 698.043,388.73 688.46,441.421 688.23,449.92 687.16,489.337 690.173,432.872 702.76,408.513 729.587,367.735 759.238,357.372 785.2,354.882 830.253,350.562 851.94,393.788 851.778,433.008 851.778,568.5 778.5,599.78 702.76,644 553.283,731.272 361.904,785.903 188.825,806.104 139.658,811.842 71.9259,817.258 28.0093,789.94 -3.63591,770.255 12.3563,740.399 37.2843,723.092 72.388,698.72 108.278,690.508 151.143,682.95 265.224,662.835 383.518,665.021 498.445,664.35 613.373,663.679 808.21,659.794 1006.69,656.875" />
+                </Path.Data>
+            </Path>
+        </Grid>
+    </Border>
+</Window>

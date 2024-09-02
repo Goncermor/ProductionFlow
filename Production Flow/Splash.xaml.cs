@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace Order_Processor
+namespace Production_Flow
 {
     public partial class Splash : Window
     {

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows.Data;
 
-namespace Order_Processor.Converters
+namespace Production_Flow.Converters
 {
     public class EnumDescriptionConverter : IValueConverter
     {

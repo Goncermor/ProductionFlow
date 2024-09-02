@@ -1,7 +1,7 @@
 ﻿using ModernWpf.Controls;
 using System.Data;
 
-namespace Order_Processor.Controls
+namespace Production_Flow.Controls
 {
     public partial class DataEditor : ContentDialog
     {

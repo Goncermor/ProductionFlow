@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:types="clr-namespace:Order_Processor.Types"
+             xmlns:types="clr-namespace:Production_Flow.Types"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             x:Class="Order_Processor.Controls.DataEditor"
+             x:Class="Production_Flow.Controls.DataEditor"
              mc:Ignorable="d" Title="" DefaultButton="Primary" PrimaryButtonText="Guardar" SecondaryButtonText="Cancelar" BorderBrush="Red" IsPrimaryButtonEnabled="True">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="348" Width="518">
         <TextBox x:Name="PurchaseOrderBox" ui:ControlHelper.PlaceholderText="Ordem de Compra" Margin="10,47,268,0" TextWrapping="Wrap" VerticalAlignment="Top" AutomationProperties.IsRequiredForForm="True"/>
