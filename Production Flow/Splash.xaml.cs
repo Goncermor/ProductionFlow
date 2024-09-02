@@ -13,9 +13,11 @@ namespace Production_Flow
         private void Window_ContentRendered(object sender, EventArgs e) => _ = Wait();
         private async Task Wait()
         {
-            await Task.Delay(500);
-            Storyboard? Sb = this.FindResource("WriteSignature") as Storyboard;
-            Sb?.Begin();
+            Storyboard? ShowSb = this.FindResource("Show") as Storyboard;
+            ShowSb?.Begin();
+            await Task.Delay(800);
+            Storyboard? SignatureSb = this.FindResource("WriteSignature") as Storyboard;
+            SignatureSb?.Begin();
 
             await Task.Delay(3000);
             Database.Load();
