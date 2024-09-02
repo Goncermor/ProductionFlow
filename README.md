@@ -31,9 +31,7 @@ We welcome contributions from the community to enhance Production Flow. To contr
 3. Make your changes and submit a pull request.
 4. Ensure your code adheres to the coding standards.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE), allowing free use, modification, and distribution of the code. 📜
+**⚖️ License:** [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
 
 ---
 
