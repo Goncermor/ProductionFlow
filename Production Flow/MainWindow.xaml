@@ -45,7 +45,6 @@
                 <DataGridTextColumn Binding="{Binding Price}" Header="Preço/U" />
                 <DataGridTextColumn Binding="{Binding OrderDate, Converter={StaticResource UnixTimestampToDateConverter}}" Header="Data Encomenda" />
                 <DataGridTextColumn Binding="{Binding LimitDate, Converter={StaticResource UnixTimestampToDateConverter}}" Header="Data de Entrega" />
-                <DataGridTextColumn Binding="{Binding MaterialState, Converter={StaticResource EnumDescriptionConverter}}" Header="Estado Material" />
                 <DataGridTextColumn Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" Header="Estado" />
                 <DataGridTextColumn Binding="{Binding Notes}" Header="Notas" />
             </DataGrid.Columns>

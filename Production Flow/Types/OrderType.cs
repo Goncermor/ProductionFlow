@@ -20,8 +20,6 @@ namespace Production_Flow.Types
         public long OrderDate { get; set; }
         [JsonPropertyName("s")]
         public StateType State { get; set; }
-        [JsonPropertyName("ms")]
-        public MaterialStateType MaterialState { get; set; }
         [JsonPropertyName("no")]
         public string Notes { get; set; } = "";
 

@@ -2,20 +2,20 @@
     x:Class="Production_Flow.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ui="http://schemas.modernwpf.com/2019" xmlns:Converters="clr-namespace:Production_Flow.Converters"
+    xmlns:Converters="clr-namespace:Production_Flow.Converters"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
     StartupUri="Splash.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources RequestedTheme="Dark" AccentColor="Red" />
-                <ui:XamlControlsResources  />
+                <ui:ThemeResources AccentColor="Red" RequestedTheme="Dark" />
+                <ui:XamlControlsResources />
                 <ui:IntellisenseResources Source="/ModernWpf;component/DesignTime/DesignTimeResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="SonnyGothic">./Assets/SonnyGothic.otf</FontFamily>
-            
+
             <Converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
             <Converters:StateEnumConverter x:Key="StateEnumConverter" />
-            <Converters:MaterialStateEnumConverter x:Key="MaterialStateEnumConverter" />
 
             <Converters:UnixTimestampToDateConverter x:Key="UnixTimestampToDateConverter" />
         </ResourceDictionary>

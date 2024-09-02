@@ -10,11 +10,12 @@
     Width="400"
     Height="240"
     AllowsTransparency="True"
+    Background="{x:Null}"
     ContentRendered="Window_ContentRendered"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    mc:Ignorable="d" Background="{x:Null}">
+    mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WriteSignature">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Path" Storyboard.TargetProperty="(Shape.StrokeDashOffset)">

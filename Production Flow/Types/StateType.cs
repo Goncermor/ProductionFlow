@@ -8,6 +8,9 @@ namespace Production_Flow.Types
         [Description("Por Fazer")]
         [EnumMember(Value = "TD")]
         ToDo,
+        [Description("Aguarda Material")]
+        [EnumMember(Value = "AM")]
+        AwaitingMaterial,
         [Description("Produção")]
         [EnumMember(Value = "PR")]
         Production,
@@ -17,8 +20,8 @@ namespace Production_Flow.Types
         [Description("Atrazado")]
         [EnumMember(Value = "PD")]
         PastDue,
-        [Description("Feito")]
-        [EnumMember(Value = "DN")]
-        Done
+        [Description("Enviado")]
+        [EnumMember(Value = "ST")]
+        Sent
     }
 }

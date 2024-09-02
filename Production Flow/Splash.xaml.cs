@@ -18,7 +18,6 @@ namespace Production_Flow
             await Task.Delay(800);
             Storyboard? SignatureSb = this.FindResource("WriteSignature") as Storyboard;
             SignatureSb?.Begin();
-
             await Task.Delay(3000);
             Database.Load();
             this.Hide();

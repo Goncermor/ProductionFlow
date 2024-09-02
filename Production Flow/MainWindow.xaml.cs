@@ -9,7 +9,7 @@ namespace Production_Flow
 {
     public partial class MainWindow : Window
     {
-        
+
 
         public MainWindow()
         {
@@ -41,18 +41,18 @@ namespace Production_Flow
             DataEditor.NotesBox.Text = "";
             DataEditor.AmountBox.Text = "";
             DataEditor.StateComboBox.SelectedIndex = -1;
-            DataEditor.MaterialStateComboBox.SelectedIndex = -1;
+
             ContentDialogResult Result = await DataEditor.ShowAsync();
             if (Result == ContentDialogResult.Primary)
             {
-                OrderType NewOrder = new OrderType() {
+                OrderType NewOrder = new OrderType()
+                {
                     Client = DataEditor.ClientBox.Text,
                     Price = DataEditor.PriceBox.Text,
                     Amount = DataEditor.AmountBox.Text,
                     Ref = DataEditor.RefBox.Text,
                     PurchaseOrder = DataEditor.PurchaseOrderBox.Text,
                     State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex,
-                    MaterialState = (Types.MaterialStateType)DataEditor.MaterialStateComboBox.SelectedIndex,
                     LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
                     OrderDate = ((DateTimeOffset)DataEditor.OrderDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
                     Notes = DataEditor.NotesBox.Text
@@ -99,7 +99,6 @@ namespace Production_Flow
                 Sb.AppendLine($"Preço/U: {SelectedLine.Price}");
                 Sb.AppendLine($"Data da Encomenda: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.OrderDate).ToString("MM/dd/yyyy")}");
                 Sb.AppendLine($"Data de Entrega: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.LimitDate).ToString("MM/dd/yyyy")}");
-                Sb.AppendLine($"Estado Material: {Helpers.EnumHelper.GetDescription(SelectedLine.MaterialState)}");
                 Sb.AppendLine($"Estado: {Helpers.EnumHelper.GetDescription(SelectedLine.State)}");
                 Sb.AppendLine($"Notas: {SelectedLine.Notes}\n");
             }
@@ -119,7 +118,6 @@ namespace Production_Flow
             DataEditor.OrderDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].OrderDate).Date;
             DataEditor.NotesBox.Text = Database.OrderList[CurrentItem].Notes;
             DataEditor.StateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].State;
-            DataEditor.MaterialStateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].MaterialState;
             ContentDialogResult Result = await DataEditor.ShowAsync();
             if (Result == ContentDialogResult.Primary)
             {
@@ -129,7 +127,6 @@ namespace Production_Flow
                 Database.OrderList[CurrentItem].Ref = DataEditor.RefBox.Text;
                 Database.OrderList[CurrentItem].PurchaseOrder = DataEditor.PurchaseOrderBox.Text;
                 Database.OrderList[CurrentItem].State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex;
-                Database.OrderList[CurrentItem].MaterialState = (Types.MaterialStateType)DataEditor.MaterialStateComboBox.SelectedIndex;
                 Database.OrderList[CurrentItem].LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds();
                 Database.OrderList[CurrentItem].OrderDate = ((DateTimeOffset)DataEditor.OrderDatePicker.SelectedDate.Value).ToUnixTimeSeconds();
                 Database.OrderList[CurrentItem].Notes = DataEditor.NotesBox.Text;
@@ -151,7 +148,7 @@ namespace Production_Flow
 
         private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            
+
             // e.Row.Background = new SolidColorBrush(Color.FromRgb(255,0,0));
         }
 
