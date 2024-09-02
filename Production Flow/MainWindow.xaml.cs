@@ -33,13 +33,10 @@ namespace Production_Flow
         private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             DataEditor.IsEditMode = false;
-            DataEditor.PriceBox.Text = "";
-            DataEditor.RefBox.Text = "";
-            DataEditor.PurchaseOrderBox.Text = "";
             DataEditor.ClientBox.Text = "";
             DataEditor.PurchaseOrderBox.Text = "";
+            DataEditor.RefBox.Text = "";
             DataEditor.NotesBox.Text = "";
-            DataEditor.AmountBox.Text = "";
             DataEditor.StateComboBox.SelectedIndex = -1;
 
             ContentDialogResult Result = await DataEditor.ShowAsync();
@@ -48,13 +45,11 @@ namespace Production_Flow
                 OrderType NewOrder = new OrderType()
                 {
                     Client = DataEditor.ClientBox.Text,
-                    Price = DataEditor.PriceBox.Text,
-                    Amount = DataEditor.AmountBox.Text,
-                    Ref = DataEditor.RefBox.Text,
                     PurchaseOrder = DataEditor.PurchaseOrderBox.Text,
-                    State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex,
-                    LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
+                    Ref = DataEditor.RefBox.Text,
                     OrderDate = ((DateTimeOffset)DataEditor.OrderDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
+                    LimitDate = ((DateTimeOffset)DataEditor.LimitDateDatePicker.SelectedDate.Value).ToUnixTimeSeconds(),
+                    State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex,
                     Notes = DataEditor.NotesBox.Text
                 };
                 Database.OrderList.Add(NewOrder);
@@ -88,42 +83,35 @@ namespace Production_Flow
 
         private void MenuCopy_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder Sb = new StringBuilder();
-            foreach (object SelectedItem in DataGrid.SelectedItems)
+            string CopyData = "";
+            foreach (Types.OrderType SelectedItem in DataGrid.SelectedItems)
             {
-                Types.OrderType SelectedLine = (Types.OrderType)SelectedItem;
-                Sb.AppendLine($"Cliente: {SelectedLine.Client}");
-                Sb.AppendLine($"PO: {SelectedLine.PurchaseOrder}");
-                Sb.AppendLine($"Ref: {SelectedLine.Ref}");
-                Sb.AppendLine($"Qtd: {SelectedLine.Amount}");
-                Sb.AppendLine($"Preço/U: {SelectedLine.Price}");
-                Sb.AppendLine($"Data da Encomenda: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.OrderDate).ToString("MM/dd/yyyy")}");
-                Sb.AppendLine($"Data de Entrega: {DateTimeOffset.FromUnixTimeSeconds(SelectedLine.LimitDate).ToString("MM/dd/yyyy")}");
-                Sb.AppendLine($"Estado: {Helpers.EnumHelper.GetDescription(SelectedLine.State)}");
-                Sb.AppendLine($"Notas: {SelectedLine.Notes}\n");
+                CopyData += SelectedItem.Client + "\t";
+                CopyData += SelectedItem.PurchaseOrder + "\t";
+                CopyData += SelectedItem.Ref + "\t";
+                CopyData += DateTimeOffset.FromUnixTimeSeconds(SelectedItem.OrderDate).ToString("MM/dd/yyyy") + "\t";
+                CopyData += DateTimeOffset.FromUnixTimeSeconds(SelectedItem.LimitDate).ToString("MM/dd/yyyy") + "\t";
+                CopyData += Helpers.EnumHelper.GetDescription(SelectedItem.State) + "\t";
+                // Operation
+                CopyData += SelectedItem.Notes;
             }
-            Clipboard.SetText(Sb.ToString());
+            Clipboard.SetText(CopyData);
         }
         private async void MenuEdit_Click(object sender, RoutedEventArgs e)
         {
             DataEditor.IsEditMode = true;
             int CurrentItem = Database.OrderList.IndexOf((Types.OrderType)DataGrid.SelectedItem);
-            DataEditor.PriceBox.Text = Database.OrderList[CurrentItem].Price;
-            DataEditor.RefBox.Text = Database.OrderList[CurrentItem].Ref;
-            DataEditor.AmountBox.Text = Database.OrderList[CurrentItem].Amount;
-            DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
             DataEditor.ClientBox.Text = Database.OrderList[CurrentItem].Client;
             DataEditor.PurchaseOrderBox.Text = Database.OrderList[CurrentItem].PurchaseOrder;
-            DataEditor.LimitDateDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].LimitDate).Date;
+            DataEditor.RefBox.Text = Database.OrderList[CurrentItem].Ref;
             DataEditor.OrderDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].OrderDate).Date;
+            DataEditor.LimitDateDatePicker.SelectedDate = DateTimeOffset.FromUnixTimeSeconds(Database.OrderList[CurrentItem].LimitDate).Date;
             DataEditor.NotesBox.Text = Database.OrderList[CurrentItem].Notes;
             DataEditor.StateComboBox.SelectedIndex = (int)Database.OrderList[CurrentItem].State;
             ContentDialogResult Result = await DataEditor.ShowAsync();
             if (Result == ContentDialogResult.Primary)
             {
                 Database.OrderList[CurrentItem].Client = DataEditor.ClientBox.Text;
-                Database.OrderList[CurrentItem].Price = DataEditor.PriceBox.Text;
-                Database.OrderList[CurrentItem].Amount = DataEditor.AmountBox.Text;
                 Database.OrderList[CurrentItem].Ref = DataEditor.RefBox.Text;
                 Database.OrderList[CurrentItem].PurchaseOrder = DataEditor.PurchaseOrderBox.Text;
                 Database.OrderList[CurrentItem].State = (Types.StateType)DataEditor.StateComboBox.SelectedIndex;

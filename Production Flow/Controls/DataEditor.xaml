@@ -7,7 +7,8 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:types="clr-namespace:Production_Flow.Types"
     xmlns:ui="http://schemas.modernwpf.com/2019"
-    Title=""
+    Title="Adicionar Encomenda"
+    Width="660"
     BorderBrush="Red"
     DefaultButton="Primary"
     IsPrimaryButtonEnabled="True"
@@ -32,16 +33,6 @@
             VerticalAlignment="Top"
             ui:ControlHelper.PlaceholderText="Referencia"
             TextWrapping="Wrap" />
-        <TextBox
-            x:Name="PriceBox"
-            Margin="10,158,268,0"
-            VerticalAlignment="Top"
-            ui:ControlHelper.PlaceholderText="Preço por unidade" />
-        <TextBox
-            x:Name="AmountBox"
-            Margin="10,121,268,0"
-            VerticalAlignment="Top"
-            ui:ControlHelper.PlaceholderText="Quantidade" />
         <ui:AutoSuggestBox
             x:Name="ClientBox"
             Margin="10,10,268,0"
@@ -51,7 +42,7 @@
         <ComboBox
             x:Name="StateComboBox"
             Height="32"
-            Margin="10,306,268,0"
+            Margin="10,197,268,0"
             HorizontalAlignment="Stretch"
             ui:ControlHelper.PlaceholderText="Estado"
             ItemsSource="{Binding Source={StaticResource StateEnumConverter}, Path=Items}"
@@ -60,7 +51,7 @@
         <DatePicker
             x:Name="OrderDatePicker"
             Height="32"
-            Margin="10,195,268,0"
+            Margin="10,122,268,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top"
             ui:ControlHelper.PlaceholderText="Data de Encomenda"
@@ -68,18 +59,16 @@
         <DatePicker
             x:Name="LimitDateDatePicker"
             Height="32"
-            Margin="10,232,268,0"
+            Margin="10,0,268,0"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
             ui:ControlHelper.PlaceholderText="Data de Entrega"
             SelectedDateFormat="Short" />
-        <RichTextBox Margin="260,10,10,10" ui:ControlHelper.PlaceholderText="Notas">
-            <FlowDocument>
-                <Paragraph>
-                    <Run x:Name="NotesBox" Text="" />
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+        <TextBox
+            x:Name="NotesBox"
+            Margin="260,10,10,10"
+            ui:ControlHelper.PlaceholderText="Notas"
+            AcceptsReturn="True"
+            TextWrapping="Wrap" />
 
     </Grid>
 </ui:ContentDialog>
