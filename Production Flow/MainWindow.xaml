@@ -45,7 +45,7 @@
                 <DataGridTextColumn Binding="{Binding LimitDate, Converter={StaticResource UnixTimestampToDateConverter}}" Header="Data de Entrega" />
                 <DataGridTextColumn Binding="{Binding State, Converter={StaticResource EnumDescriptionConverter}}" Header="Estado" />
                 <!--  TODO: Lista de Operações  -->
-                <DataGridTextColumn Header="Operaçoes" />
+                <!-- <DataGridTextColumn Header="Operaçoes" />-->
                 <DataGridTextColumn Binding="{Binding Notes}" Header="Notas" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>

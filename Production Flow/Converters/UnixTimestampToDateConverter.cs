@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
-using Windows.Graphics.DirectX.Direct3D11;
 
 namespace Production_Flow.Converters
 {
