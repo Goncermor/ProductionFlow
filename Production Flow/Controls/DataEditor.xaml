@@ -74,7 +74,7 @@
                 Margin="16,4,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Content="Estado" />
+                Content="Data de Encomenda" />
             <DatePicker
                 x:Name="OrderDatePicker"
                 Width="224"
@@ -87,7 +87,7 @@
                 Margin="16,4,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Content="Estado" />
+                Content="Data de Entrega" />
             <DatePicker
                 x:Name="LimitDateDatePicker"
                 Width="224"
