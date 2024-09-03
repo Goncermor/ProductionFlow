@@ -1,19 +1,32 @@
 ﻿using ModernWpf.Controls;
 using Production_Flow.Types;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace Production_Flow
 {
     public partial class MainWindow : Window
     {
-
+        public ICollectionView CollectionView { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
+            CollectionView = CollectionViewSource.GetDefaultView(Database.OrderList);
+            CollectionView.Filter = Object =>
+             {
+                 if (ShowSent.IsChecked == false) // == false and not !... because IsChecked is nullbale bool
+                 {
+                     Types.OrderType Item = (Types.OrderType)Object;
+                     if (Item.State == StateType.Sent) return false;
+                     else return true;
+                 }
+                 else return true;
+             };
         }
 
         private void Window_ContentRendered(object sender, EventArgs e) => _ = LoadData();
@@ -25,8 +38,7 @@ namespace Production_Flow
             await Task.Delay(1000);
             LoadSplash.Visibility = Visibility.Hidden;
 
-
-            DataGrid.ItemsSource = Database.OrderList;
+            DataGrid.ItemsSource = CollectionView;
             DataEditor.ClientList = Database.ClientList;
         }
 
@@ -55,7 +67,7 @@ namespace Production_Flow
                 Database.OrderList.Add(NewOrder);
                 if (!Database.ClientList.Contains(DataEditor.ClientBox.Text)) Database.ClientList.Add(DataEditor.ClientBox.Text);
                 Database.SaveDb();
-                DataGrid.Items.Refresh();
+                CollectionView.Refresh();
             }
 
         }
@@ -120,7 +132,7 @@ namespace Production_Flow
                 Database.OrderList[CurrentItem].Notes = DataEditor.NotesBox.Text;
                 if (!Database.ClientList.Contains(DataEditor.ClientBox.Text)) Database.ClientList.Add(DataEditor.ClientBox.Text);
                 Database.SaveDb();
-                DataGrid.Items.Refresh();
+                CollectionView.Refresh();
             }
         }
         private void MenuDelete_Click(object sender, RoutedEventArgs e)
@@ -129,7 +141,7 @@ namespace Production_Flow
             {
                 Database.OrderList.Remove(Order);
             }
-            DataGrid.Items.Refresh();
+            CollectionView.Refresh();
             Database.SaveDb();
         }
         #endregion
@@ -143,6 +155,11 @@ namespace Production_Flow
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void ShowSent_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView.Refresh();
         }
     }
 }

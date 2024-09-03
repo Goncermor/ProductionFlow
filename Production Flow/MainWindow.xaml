@@ -79,8 +79,8 @@
             Margin="0,0,119,16"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Content="Mostrar enviados"
-            IsEnabled="False" />
+            Click="ShowSent_Click"
+            Content="Mostrar enviados" />
         <Label
             Width="110"
             Height="32"
