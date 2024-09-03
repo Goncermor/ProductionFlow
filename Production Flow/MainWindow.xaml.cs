@@ -1,6 +1,8 @@
 ﻿using ModernWpf.Controls;
 using Production_Flow.Types;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,7 +39,6 @@ namespace Production_Flow
         {
             await Task.Delay(1000);
             LoadSplash.Visibility = Visibility.Hidden;
-
             DataGrid.ItemsSource = CollectionView;
             DataEditor.ClientList = Database.ClientList;
         }
@@ -160,6 +161,12 @@ namespace Production_Flow
         private void ShowSent_Click(object sender, RoutedEventArgs e)
         {
             CollectionView.Refresh();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Version? Ver = Assembly.GetExecutingAssembly().GetName().Version;
+            if (Ver != null) this.Title += $" V{Ver.Major}.{Ver.Minor}";
         }
     }
 }

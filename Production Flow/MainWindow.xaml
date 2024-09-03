@@ -15,6 +15,7 @@
     Closing="Window_Closing"
     ContentRendered="Window_ContentRendered"
     Icon="/Assets/Flag.ico"
+    Loaded="Window_Loaded"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
