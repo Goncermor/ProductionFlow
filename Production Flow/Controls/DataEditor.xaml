@@ -20,49 +20,84 @@
         Height="348"
         HorizontalAlignment="Center"
         VerticalAlignment="Center">
-        <TextBox
-            x:Name="PurchaseOrderBox"
-            Margin="10,47,268,0"
-            VerticalAlignment="Top"
-            ui:ControlHelper.PlaceholderText="Ordem de Compra"
-            AutomationProperties.IsRequiredForForm="True"
-            TextWrapping="Wrap" />
-        <TextBox
-            x:Name="RefBox"
-            Margin="10,84,268,0"
-            VerticalAlignment="Top"
-            ui:ControlHelper.PlaceholderText="Referencia"
-            TextWrapping="Wrap" />
-        <ui:AutoSuggestBox
-            x:Name="ClientBox"
-            Margin="10,10,268,0"
-            ui:ControlHelper.PlaceholderText="Cliente"
-            IsTextSearchEnabled="True"
-            TextChanged="ClientBox_TextChanged" />
-        <ComboBox
-            x:Name="StateComboBox"
-            Height="32"
-            Margin="10,197,268,0"
-            HorizontalAlignment="Stretch"
-            ui:ControlHelper.PlaceholderText="Estado"
-            ItemsSource="{Binding Source={StaticResource StateEnumConverter}, Path=Items}"
-            SelectedIndex="0" />
+        <StackPanel Width="250" HorizontalAlignment="Left">
+            <Label
+                Margin="16,8,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Cliente" />
+            <ui:AutoSuggestBox
+                x:Name="ClientBox"
+                Width="224"
+                ui:ControlHelper.PlaceholderText="Cliente"
+                IsTextSearchEnabled="True"
+                TextChanged="ClientBox_TextChanged" />
+            <Label
+                Margin="16,4,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Ordem de Compra" />
+            <TextBox
+                x:Name="PurchaseOrderBox"
+                Width="224"
+                VerticalAlignment="Top"
+                ui:ControlHelper.PlaceholderText="Ordem de Compra"
+                AutomationProperties.IsRequiredForForm="True"
+                TextWrapping="Wrap" />
 
-        <DatePicker
-            x:Name="OrderDatePicker"
-            Height="32"
-            Margin="10,122,268,0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            ui:ControlHelper.PlaceholderText="Data de Encomenda"
-            SelectedDateFormat="Short" />
-        <DatePicker
-            x:Name="LimitDateDatePicker"
-            Height="32"
-            Margin="10,0,268,0"
-            HorizontalAlignment="Stretch"
-            ui:ControlHelper.PlaceholderText="Data de Entrega"
-            SelectedDateFormat="Short" />
+            <Label
+                Margin="16,4,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Referência" />
+            <TextBox
+                x:Name="RefBox"
+                Width="224"
+                VerticalAlignment="Top"
+                ui:ControlHelper.PlaceholderText="Referência"
+                TextWrapping="Wrap" />
+
+            <Label
+                Margin="16,4,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Estado" />
+            <ComboBox
+                x:Name="StateComboBox"
+                Width="224"
+                Height="32"
+                HorizontalAlignment="Stretch"
+                ui:ControlHelper.PlaceholderText="Estado"
+                ItemsSource="{Binding Source={StaticResource StateEnumConverter}, Path=Items}"
+                SelectedIndex="0" />
+            <Label
+                Margin="16,4,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Estado" />
+            <DatePicker
+                x:Name="OrderDatePicker"
+                Width="224"
+                Height="32"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                ui:ControlHelper.PlaceholderText="Data de Encomenda"
+                SelectedDateFormat="Short" />
+            <Label
+                Margin="16,4,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Estado" />
+            <DatePicker
+                x:Name="LimitDateDatePicker"
+                Width="224"
+                Height="32"
+                HorizontalAlignment="Stretch"
+                ui:ControlHelper.PlaceholderText="Data de Entrega"
+                SelectedDateFormat="Short" />
+        </StackPanel>
+
+
         <TextBox
             x:Name="NotesBox"
             Margin="260,10,10,10"

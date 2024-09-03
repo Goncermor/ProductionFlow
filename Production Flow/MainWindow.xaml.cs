@@ -93,7 +93,7 @@ namespace Production_Flow
                 CopyData += DateTimeOffset.FromUnixTimeSeconds(SelectedItem.LimitDate).ToString("MM/dd/yyyy") + "\t";
                 CopyData += Helpers.EnumHelper.GetDescription(SelectedItem.State) + "\t";
                 // Operation
-                CopyData += SelectedItem.Notes;
+                CopyData += $"\"{SelectedItem.Notes}\"";
             }
             Clipboard.SetText(CopyData);
         }
